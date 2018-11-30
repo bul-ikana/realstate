@@ -3,7 +3,7 @@ module Admin
     
     def create
       resource = resource_class.new(resource_params)
-      resource.user_id = User.first.id
+      resource.user_id = current_user.id
       authorize_resource(resource)
 
       if resource.save

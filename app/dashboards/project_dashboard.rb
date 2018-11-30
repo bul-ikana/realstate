@@ -14,6 +14,11 @@ class ProjectDashboard < Administrate::BaseDashboard
     city: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    sold: Field::Number.with_options(prefix: "$", decimals: 2),
+    separated: Field::Number,
+    available: Field::Number,
+    properties: Field::HasMany
+
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -24,6 +29,10 @@ class ProjectDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :name,
     :city,
+    :sold,
+    :separated,
+    :available,
+    :properties
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -31,6 +40,7 @@ class ProjectDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :name,
     :city,
+    :properties
   ].freeze
 
   # FORM_ATTRIBUTES
