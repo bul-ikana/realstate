@@ -10,7 +10,8 @@ User.create(
 	first_name: Faker::Name.first_name,
 	last_name:  Faker::Name.last_name,
 	username:   'admin',
-	password:   '123123'
+	password:   '123123',
+	encrypted_password: '$2a$10$czfgsVnYjZ6w.dAhY2dQTOWQgCz4BkSBBBSXvAUs0d/IpYjoRVafy'
 )
 
 3.times do
