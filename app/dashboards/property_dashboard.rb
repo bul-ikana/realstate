@@ -12,10 +12,10 @@ class PropertyDashboard < Administrate::BaseDashboard
     id: Field::Number,
     sku: Field::String,
     description: Field::Text,
-    price: Field::Number.with_options(decimals: 2),
-    property_type: Field::String,
+    price: Field::Number.with_options(decimals: 2, prefix: '$'),
+    property_type: Field::Select.with_options(collection: Property::TYPES),
     photo: Field::String,
-    status: Field::String,
+    status: Field::Select.with_options(collection: Property::STATUS),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,31 +27,30 @@ class PropertyDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :project,
-    :id,
     :sku,
     :description,
+    :property_type,
+    :price,
+    :status,
+    :photo,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :project,
-    :id,
     :sku,
     :description,
     :price,
     :property_type,
     :photo,
     :status,
-    :created_at,
-    :updated_at,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :project,
     :sku,
     :description,
     :price,
@@ -63,7 +62,7 @@ class PropertyDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how properties are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(property)
-  #   "Property ##{property.id}"
-  # end
+  def display_resource(property)
+    property.sku
+  end
 end
