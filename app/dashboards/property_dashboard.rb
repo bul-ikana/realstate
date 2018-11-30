@@ -14,7 +14,7 @@ class PropertyDashboard < Administrate::BaseDashboard
     description: Field::Text,
     price: Field::Number.with_options(decimals: 2, prefix: '$'),
     property_type: Field::Select.with_options(collection: Property::TYPES),
-    photo: Field::String,
+    photo: ImageField,
     status: Field::Select.with_options(collection: Property::STATUS),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -51,6 +51,7 @@ class PropertyDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :project,
     :sku,
     :description,
     :price,
