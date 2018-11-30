@@ -1,21 +1,22 @@
 module Admin
   class ProjectsController < Admin::ApplicationController
-    # To customize the behavior of this controller,
-    # you can overwrite any of the RESTful actions. For example:
-    #
-    # def index
-    #   super
-    #   @resources = Project.
-    #     page(params[:page]).
-    #     per(10)
-    # end
+    
+    def create
+      resource = resource_class.new(resource_params)
+      resource.user_id = User.first.id
+      authorize_resource(resource)
 
-    # Define a custom finder by overriding the `find_resource` method:
-    # def find_resource(param)
-    #   Project.find_by!(slug: param)
-    # end
+      if resource.save
+        redirect_to(
+          [namespace, resource],
+          notice: translate_with_resource("create.success"),
+        )
+      else
+        render :new, locals: {
+          page: Administrate::Page::Form.new(dashboard, resource),
+        }
+      end
+    end
 
-    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
-    # for more information
   end
 end
