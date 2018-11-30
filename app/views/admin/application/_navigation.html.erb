@@ -18,7 +18,7 @@ as defined by the routes in the `admin/` namespace
 
   <% if signed_in? %>
 	<hr>	
-    <%= current_user.email %>
+    <%= "#{current_user.first_name} #{current_user.last_name}" %>
     <br>
     <%= button_to "Sign out", sign_out_path, method: :delete, style: 'margin-top: 10px' %>
 	<hr>	
