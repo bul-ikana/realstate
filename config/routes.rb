@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
       root to: "projects#index"
     end
+
+    root to: redirect(path: '/admin')
 end
