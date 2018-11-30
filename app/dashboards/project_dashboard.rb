@@ -15,6 +15,8 @@ class ProjectDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     sold: Field::Number.with_options(prefix: "$", decimals: 2),
+    separated: Field::Number,
+    available: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,7 +27,9 @@ class ProjectDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :name,
     :city,
-    :sold
+    :sold,
+    :separated,
+    :available
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
